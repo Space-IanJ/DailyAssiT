@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Assistant</title>
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: teal;
+            }
+            .user   {
+                color: darkblue;
+                background-color: cyan;
+                width: 50%;
+                padding: 10px 24px;
+                margin: 8px 0;
+            }
+            .description {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: cyan;
+                color: darkblue
+            }
+            .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        </style>
+        <input placeholder="Enter your user: " id="user" class="user" type="text" onkeyup="saveUser(this)" required/>
+        <input placeholder="Enter your password: " id="password" class="user" type="password" onkeypress="checkPass()" required/>
+        <button class="button" id="href" onclick="location.replace('api.html')">Sign In!</button>
+        <div id="hyperdiv">
+        <h3 class="description" id="description">
+
+        </h3>
+        <img src="download.jfif" height="400" width="1000">
+        </div>
+        <script>
+            var user = getUser("user");
+            
+
+
+            function checkPass() {
+               if (document.getElementById("password").value == user) {
+                document.getElementById("href").disabled = false
+               } else {
+                document.getElementById("href").disabled = true
+               }
+            }
+
+            document.getElementById("href").innerHTML = "Sign In as "+user+" with password "+document.getElementById("password").value;
+            document.getElementById("user").value = user;
+            
+
+
+                    
+            function saveUser(user) {
+                var id = user.id;
+                var val = user.value;
+                localStorage.setItem(id,val);
+            }
+
+            function getUser(v) {
+                if (!localStorage.getItem(v)) {
+                    return "USER_ERROR";
+                    console.log("USER ERROR!")
+                }
+                return localStorage.getItem(v);
+            }
+            
+
+            
+        </script>
+    </body>
+</html>
